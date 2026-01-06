@@ -1,112 +1,175 @@
-# Snowhacks_CodeCrafters — Marketing Attribution & ROI Analytics Platform
+# AdWise - Marketing Analytics Platform
 
-## 🏆 Hackathon Project
-**Team Name:** CodeCrafters  
+A comprehensive marketing analytics platform for businesses and startups to track ROI, analyze channel performance, and optimize marketing spend.
 
-### 🎯 Problem Statement
-Small and medium businesses spend money across multiple marketing channels (Google Ads, Instagram, Email, etc.), but they do not have clear visibility into **which channels actually convert customers**.
+## Features
 
-This results in:
-- High Customer Acquisition Cost (CAC)
-- Poor budget allocation
-- Low Return on Investment (ROI)
-- Decisions made on guesswork instead of data
+### 1. Landing Page
+- Hero section with compelling headline
+- Features showcase
+- About section
+- Professional SaaS design
 
----
+### 2. Authentication
+- User registration with validation
+- Secure login system
+- Session management
+- Password protection
 
-## 💡 Our Solution — Web-Based ROI & Channel Performance Dashboard
+### 3. Onboarding
+- Business information collection
+- Marketing channel selection
+- Budget input in Indian Rupees (₹)
+- Progress indicator
 
-We are building a simple, practical platform that allows businesses to:
-- Enter/upload marketing campaign data
-- Calculate **CAC, ROI, Conversion Rate**
-- Compare performance across channels
-- Identify **best vs under-performing channels**
-- Get **actionable recommendations** for budget optimization
+### 4. Interactive Dashboard
+- **Dynamic Time Range Selection**: 7, 30, or 90 days
+- **Animated KPI Cards**: 
+  - Total Marketing Spend
+  - Total Revenue
+  - ROI Percentage
+  - Total Conversions
+- **Performance Chart**: Line chart showing Revenue vs Spend over time
+- **Channel Performance Chart**: Bar chart comparing ROI across channels
+- **Platform Tracking**: Display selected marketing channels with status
 
-Our system is easier and more insightful than manual Excel reporting.
+### 5. Recommendations Page
+- AI-powered marketing insights
+- Channel suitability analysis
+- Budget reallocation suggestions
+- Actionable recommendations
 
----
+### 6. Channels Page
+- Detailed channel comparison table
+- ROI trends visualization
+- Performance metrics
 
-## 🖥️ Product Flow / UI Pages
+### 7. Settings Page
+- Account management
+- Business information updates
+- Channel preferences
 
-1️⃣ **Landing Page** — Problem intro & CTA  
-2️⃣ **Onboarding Page** — Business details & setup  
-3️⃣ **Main Dashboard** — Overall KPIs & stats  
-4️⃣ **Channels Performance Page** — Channel-wise metrics (CAC, ROI, conversions)  
-5️⃣ **Recommendations Page** — Insights & spending suggestions  
+## Technology Stack
 
----
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Charts**: Chart.js 4.4.0
+- **Fonts**: Inter (Google Fonts)
+- **Currency**: Indian Rupees (₹)
 
-## 🏗️ System Architecture (MVP)
+## Key Features
 
-### **Frontend**
-- HTML + CSS  
-- Simple, clean, responsive UI
+### Dynamic Data Management
+- Realistic dummy data for 7, 30, and 90-day periods
+- Automatic data scaling based on time range
+- ROI calculation: `(Revenue - Spend) / Spend * 100`
 
-### **Backend**
-- PHP (handles forms, processing, APIs)
+### Premium UI/UX
+- Modern SaaS-style design
+- Smooth animations and transitions
+- Count-up effect for numbers
+- Loading states
+- Hover effects
+- Responsive design
 
-### **Database**
-- MySQL (stores campaign & analytics data)
+### Interactive Charts
+- Smooth transition animations
+- Tooltips with formatted values
+- Legend and labels
+- Color-coded channels
+- Auto-update on time range change
 
----
+## Color Palette
 
-## 🔌 Core Backend Endpoints / Modules (Planned)
+- **Primary**: Indigo (#6366F1)
+- **Success**: Green (#10B981)
+- **Warning**: Amber (#F59E0B)
+- **Danger**: Red (#EF4444)
+- **Background**: Light Gray (#F8FAFC)
+- **Text**: Slate (#0F172A)
 
-- `add_campaign.php` — Save campaign data
-- `get_campaigns.php` — Fetch stored records
-- `analytics_overview.php` — Overall KPIs
-- `analytics_channels.php` — Channel-wise analysis
-- `recommendations.php` — Insights & suggestions
-- `import_csv.php` *(optional future)* — Auto-import campaign data
+## File Structure
 
----
+```
+├── index.html              # Landing page
+├── login.html              # Login page
+├── register.html           # Registration page
+├── onboarding.html         # Onboarding flow
+├── dashboard.html          # Main dashboard
+├── channels.html           # Channel analysis
+├── recommendations.html    # AI recommendations
+├── settings.html           # User settings
+├── styles/
+│   ├── main.css           # Global styles
+│   ├── landing.css        # Landing page styles
+│   ├── auth.css           # Authentication styles
+│   ├── dashboard.css      # Dashboard styles (premium)
+│   ├── channels.css       # Channels page styles
+│   ├── recommendations.css # Recommendations styles
+│   ├── onboarding.css     # Onboarding styles
+│   └── settings.css       # Settings styles
+└── scripts/
+    └── dashboard.js       # Dashboard logic & Chart.js integration
+```
 
-## 📊 Key Metrics Calculated
+## Usage
 
-- Conversion Rate = conversions / leads  
-- CAC (Customer Acquisition Cost) = spend / conversions  
-- ROI = (revenue − spend) / spend  
-- Channel ranking by performance  
-- Wasted budget alerts  
+1. Open `index.html` in a web browser
+2. Click "Get Started" or "Login"
+3. Register a new account
+4. Complete onboarding (business info, channels, budget)
+5. Access the interactive dashboard
+6. Switch between 7, 30, and 90-day views
+7. Explore channels and recommendations
 
----
+## Dashboard Features
 
-## 🚀 Development Roadmap
+### Time Range Selector
+- Segmented button control
+- Active state highlighting
+- Smooth data transitions
 
-### **MVP (Hackathon Deliverable)**
-- Manual input form / basic CSV upload
-- PHP backend processing
-- MySQL data storage
-- Dashboard with calculated analytics
+### KPI Cards
+- Icon-based visual indicators
+- Large, readable numbers
+- Percentage change indicators
+- Hover lift animation
 
-### **Phase-2 (Automation)**
-- Google Sheets import  
-- Auto-sync campaign data
+### Charts
+- **Performance Chart**: Dual-line chart (Revenue & Spend)
+- **Channel Chart**: Horizontal bar chart (ROI by channel)
+- Smooth animations on data update
+- Formatted tooltips with ₹ symbol
+- Responsive canvas sizing
 
-### **Phase-3 (Advanced)**
-- API integrations (Google Ads / Meta Ads)
-- Smart budget recommendations
+### Data Logic
+- Data scales logically: 7 days < 30 days < 90 days
+- Realistic conversion rates
+- Proper ROI calculations
+- Consistent growth patterns
 
----
+## Browser Support
 
-## 🛠️ Tech Stack
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
 
-- **Frontend:** HTML, CSS  
-- **Backend:** PHP  
-- **Database:** MySQL  
-- **Version Control:** Git + GitHub  
+## Demo Data
 
----
+The platform includes realistic dummy data for:
+- 6 marketing channels (Google Ads, Facebook, Instagram, Email, WhatsApp, LinkedIn)
+- 3 time ranges (7, 30, 90 days)
+- Revenue, spend, conversions, and ROI metrics
 
-## 📌 Project Status
+## Future Enhancements
 
-✔ Repository initialized  
-✔ Architecture & workflow planned  
-🔄 Backend & database development in progress  
-🚧 UI pages designing in progress  
+- Real API integration
+- Export reports (PDF/CSV)
+- Email notifications
+- Team collaboration
+- Advanced analytics
+- A/B testing insights
 
----
+## License
 
-## ⭐ Acknowledgment
-Built for **Snowhacks Hackathon** to empower SMBs with smarter, data-driven marketing decisions.
+© 2024 AdWise. All rights reserved.

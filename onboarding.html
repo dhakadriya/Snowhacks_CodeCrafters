@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - AdWise</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/onboarding.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h2>AdWise</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="onboarding-main">
+        <div class="container">
+            <div class="onboarding-container">
+                <div class="progress-indicator">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <span>Business Info</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <span>Marketing Setup</span>
+                    </div>
+                </div>
+
+                <div class="onboarding-form">
+                    <h1>Tell us about your business</h1>
+                    <p class="form-subtitle">We'll customize your experience based on your marketing needs</p>
+
+                    <form id="onboardingForm">
+                        <div class="form-section">
+                            <h3>Business Details</h3>
+                            <div class="form-group">
+                                <label for="businessName">Business Name *</label>
+                                <input type="text" id="businessName" name="businessName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry">Industry *</label>
+                                <select id="industry" name="industry" required>
+                                    <option value="">Select your industry</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="saas">SaaS</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="education">Education</option>
+                                    <option value="real-estate">Real Estate</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Website / App URL</label>
+                                <input type="url" id="website" name="website" placeholder="https://yourwebsite.com">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Marketing Channels</h3>
+                            <p class="section-description">Which channels are you currently using? (Select all that apply)</p>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="channels" value="google-ads">
+                                    <span class="checkmark"></span>
+                                    Google Ads
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="channels" value="facebook">
+                                    <span class="checkmark"></span>
+                                    Facebook Ads
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="channels" value="instagram">
+                                    <span class="checkmark"></span>
+                                    Instagram Ads
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="channels" value="email">
+                                    <span class="checkmark"></span>
+                                    Email Marketing
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="channels" value="whatsapp">
+                                    <span class="checkmark"></span>
+                                    WhatsApp Business
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="channels" value="linkedin">
+                                    <span class="checkmark"></span>
+                                    LinkedIn Ads
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Budget & Goals</h3>
+                            <div class="form-group">
+                                <label for="budget">Monthly Marketing Budget (in Rupees) *</label>
+                                <input type="number" id="budget" name="budget" placeholder="Enter amount in ₹" required min="0">
+                                <small class="form-hint">Enter your monthly marketing budget in Indian Rupees</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="goals">Primary Goal (Optional)</label>
+                                <select id="goals" name="goals">
+                                    <option value="">Select your main goal</option>
+                                    <option value="increase-roi">Increase ROI</option>
+                                    <option value="reduce-cac">Reduce Customer Acquisition Cost</option>
+                                    <option value="improve-conversions">Improve Conversion Rates</option>
+                                    <option value="scale-campaigns">Scale Successful Campaigns</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save & Continue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check if user is logged in
+        if (!sessionStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('onboardingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userEmail = sessionStorage.getItem('userEmail');
+            
+            // Save business details
+            const businessName = document.getElementById('businessName').value;
+            const industry = document.getElementById('industry').value;
+            const website = document.getElementById('website').value;
+            const budget = document.getElementById('budget').value;
+            const goals = document.getElementById('goals').value;
+            
+            // Get selected channels
+            const channelCheckboxes = document.querySelectorAll('input[name="channels"]:checked');
+            const selectedChannels = Array.from(channelCheckboxes).map(cb => cb.value);
+            
+            // Store data
+            localStorage.setItem('businessName_' + userEmail, businessName);
+            localStorage.setItem('industry_' + userEmail, industry);
+            localStorage.setItem('website_' + userEmail, website);
+            localStorage.setItem('budget_' + userEmail, budget);
+            localStorage.setItem('goals_' + userEmail, goals);
+            localStorage.setItem('channels_' + userEmail, JSON.stringify(selectedChannels));
+            
+            // Mark onboarding as complete
+            localStorage.setItem('onboarding_' + userEmail, 'true');
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

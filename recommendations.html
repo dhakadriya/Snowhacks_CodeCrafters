@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - AdWise</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/recommendations.css">
+</head>
+<body>
+    <script>
+        // Check if user is logged in
+        if (!sessionStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>AdWise</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="channels.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11H1v12h8V11zM23 11h-8v12h8V11z"/>
+                    </svg>
+                    Channels
+                </a>
+                <a href="#" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Campaigns
+                </a>
+                <a href="recommendations.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4"/>
+                        <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                    Recommendations
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m18.2 5.2l-4.2-4.2m0-6l4.2-4.2"/>
+                    </svg>
+                    Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="logout-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="header-content">
+                    <div>
+                        <h1>AI-Powered Recommendations</h1>
+                        <p class="header-subtitle">Actionable insights to optimize your marketing ROI</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-outline">Export Report</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="recommendations-content">
+                <!-- Priority Alerts -->
+                <div class="priority-section">
+                    <div class="section-header">
+                        <h2>Priority Actions</h2>
+                        <span class="badge urgent">3 Urgent</span>
+                    </div>
+                    
+                    <div class="recommendation-card urgent">
+                        <div class="card-header">
+                            <div class="card-icon critical">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="card-title-section">
+                                <h3>Pause Instagram Ads Campaign</h3>
+                                <span class="priority-badge critical">Critical</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="recommendation-description">
+                                Your Instagram Ads are generating a negative ROI of 45% with a CAC of ₹7,500. 
+                                This campaign is draining budget without delivering conversions. This channel is not recommended for your business.
+                            </p>
+                            <div class="impact-metrics">
+                                <div class="impact-item">
+                                    <span class="impact-label">Potential Savings</span>
+                                    <span class="impact-value positive">₹1,41,000/month</span>
+                                </div>
+                                <div class="impact-item">
+                                    <span class="impact-label">Impact</span>
+                                    <span class="impact-value">High</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-primary">Pause Campaign</button>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-card urgent">
+                        <div class="card-header">
+                            <div class="card-icon warning">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
+                            </div>
+                            <div class="card-title-section">
+                                <h3>Increase Google Ads Budget</h3>
+                                <span class="priority-badge high">High Priority</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="recommendation-description">
+                                Google Ads is your top performer with 312% ROI and ₹1,500 CAC. 
+                                Increasing budget by 30% could generate an additional ₹5,55,000 in revenue. This channel is highly suitable for marketing.
+                            </p>
+                            <div class="impact-metrics">
+                                <div class="impact-item">
+                                    <span class="impact-label">Additional Investment</span>
+                                    <span class="impact-value">₹1,27,500/month</span>
+                                </div>
+                                <div class="impact-item">
+                                    <span class="impact-label">Projected Revenue</span>
+                                    <span class="impact-value positive">+₹5,55,000</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-primary">Adjust Budget</button>
+                                <button class="btn btn-outline">Simulate Impact</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-card urgent">
+                        <div class="card-header">
+                            <div class="card-icon warning">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                            </div>
+                            <div class="card-title-section">
+                                <h3>Optimize Facebook Ad Targeting</h3>
+                                <span class="priority-badge high">High Priority</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="recommendation-description">
+                                Facebook Ads ROI has declined 15% over the last 2 weeks. 
+                                Refine audience targeting to improve conversion rates.
+                            </p>
+                            <div class="impact-metrics">
+                                <div class="impact-item">
+                                    <span class="impact-label">Current ROI</span>
+                                    <span class="impact-value">156%</span>
+                                </div>
+                                <div class="impact-item">
+                                    <span class="impact-label">Potential ROI</span>
+                                    <span class="impact-value positive">210%</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-primary">Review Targeting</button>
+                                <button class="btn btn-outline">See Insights</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Growth Opportunities -->
+                <div class="opportunities-section">
+                    <div class="section-header">
+                        <h2>Growth Opportunities</h2>
+                        <span class="badge opportunity">4 Available</span>
+                    </div>
+
+                    <div class="opportunities-grid">
+                        <div class="opportunity-card">
+                            <div class="opportunity-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                </svg>
+                            </div>
+                            <h4>Scale Email Campaigns</h4>
+                            <p>Email marketing shows strong ROI at 221%. Consider increasing frequency and list size. This channel is suitable for marketing.</p>
+                            <div class="opportunity-stat">
+                                <span>Potential Revenue Increase</span>
+                                <strong>+₹3,20,000/month</strong>
+                            </div>
+                            <button class="btn-link">Explore →</button>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <div class="opportunity-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <h4>Retargeting Campaign</h4>
+                            <p>45% of visitors don't convert on first visit. Launch retargeting to capture lost opportunities.</p>
+                            <div class="opportunity-stat">
+                                <span>Estimated Conversion Lift</span>
+                                <strong>+18%</strong>
+                            </div>
+                            <button class="btn-link">Explore →</button>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <div class="opportunity-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </div>
+                            <h4>A/B Test Landing Pages</h4>
+                            <p>Current conversion rate is 3.2%. Industry average is 5.1%. Test new landing page variants.</p>
+                            <div class="opportunity-stat">
+                                <span>Potential Conversion Increase</span>
+                                <strong>+60%</strong>
+                            </div>
+                            <button class="btn-link">Explore →</button>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <div class="opportunity-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                                </svg>
+                            </div>
+                            <h4>Mobile Ad Optimization</h4>
+                            <p>68% of traffic is mobile but conversion rate is 40% lower. Optimize mobile experience. Not recommended to ignore mobile optimization.</p>
+                            <div class="opportunity-stat">
+                                <span>Revenue at Risk</span>
+                                <strong>₹4,80,000/month</strong>
+                            </div>
+                            <button class="btn-link">Explore →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Reallocation -->
+                <div class="budget-section">
+                    <div class="section-header">
+                        <h2>Recommended Budget Reallocation</h2>
+                        <p class="section-subtitle">Optimize your ₹12,45,000 monthly budget for maximum ROI</p>
+                    </div>
+
+                    <div class="budget-comparison">
+                        <div class="budget-column">
+                            <h3>Current Allocation</h3>
+                            <div class="budget-bars">
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Google Ads</span>
+                                        <span class="amount">₹4,25,000</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 34%; background: #4285F4;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Facebook Ads</span>
+                                        <span class="amount">₹3,10,000</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 25%; background: #1877F2;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">LinkedIn Ads</span>
+                                        <span class="amount">₹2,80,000</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 22%; background: #0A66C2;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Instagram Ads</span>
+                                        <span class="amount">₹1,41,000</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 11%; background: #E1306C;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Email Marketing</span>
+                                        <span class="amount">₹89,000</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 7%; background: #10B981;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="budget-total">
+                                <span>Total ROI</span>
+                                <strong>244.5%</strong>
+                            </div>
+                        </div>
+
+                        <div class="budget-arrow">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </div>
+
+                        <div class="budget-column recommended">
+                            <h3>Recommended Allocation</h3>
+                            <div class="budget-bars">
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Google Ads</span>
+                                        <span class="amount">₹5,52,500</span>
+                                        <span class="change positive">+30%</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 44%; background: #4285F4;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Email Marketing</span>
+                                        <span class="amount">₹2,13,500</span>
+                                        <span class="change positive">+140%</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 17%; background: #10B981;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Facebook Ads</span>
+                                        <span class="amount">₹2,48,000</span>
+                                        <span class="change negative">-20%</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 20%; background: #1877F2;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">LinkedIn Ads</span>
+                                        <span class="amount">₹2,31,000</span>
+                                        <span class="change negative">-17%</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 19%; background: #0A66C2;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-bar">
+                                    <div class="bar-info">
+                                        <span class="channel-name">Instagram Ads</span>
+                                        <span class="amount">₹0</span>
+                                        <span class="change negative">-100%</span>
+                                    </div>
+                                    <div class="bar-visual">
+                                        <div class="bar-fill" style="width: 0%; background: #E1306C;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="budget-total projected">
+                                <span>Projected ROI</span>
+                                <strong class="positive">318.7%</strong>
+                                <span class="improvement">+74.2% improvement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="budget-actions">
+                        <button class="btn btn-primary">Apply Recommendations</button>
+                        <button class="btn btn-outline">Customize Plan</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
