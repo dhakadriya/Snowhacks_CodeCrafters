@@ -42,11 +42,16 @@ app.get('/api/business/profile', (req, res) => {
 // --- Dashboard APIs (Mock) ---
 app.get('/api/dashboard/stats', (req, res) => {
     const range = parseInt(req.query.range) || 30;
-    const mult = getMultiplier(range);
+    console.log(`[DATA] Generating stats for ${range} days`);
 
-    const spend = Math.floor((15000 + Math.random() * 5000) * mult);
-    const revenue = Math.floor(spend * (2.5 + Math.random() * 2));
-    const conversions = Math.floor(spend / 450);
+    // Explicit growth factors to ensure the user SEES the data change significantly
+    const mult = range / 7;
+    const variance = 0.9 + (Math.random() * 0.2);
+    const finalFactor = mult * variance;
+
+    const spend = Math.floor((12000 + Math.random() * 2000) * finalFactor);
+    const revenue = Math.floor(spend * (2.5 + Math.random() * 2)); // 2.5x - 4.5x ROI
+    const conversions = Math.floor(spend / (350 + Math.random() * 100));
 
     res.json({
         totalSpend: spend,
@@ -76,13 +81,21 @@ app.get('/api/dashboard/charts', (req, res) => {
         });
     }
 
-    const platformStats = [
+    const allPlatforms = [
         { _id: 'Google Ads', spend: 0.4, revMult: 3.2 },
         { _id: 'Facebook Ads', spend: 0.3, revMult: 2.6 },
         { _id: 'Instagram', spend: 0.2, revMult: 2.2 },
         { _id: 'Email Marketing', spend: 0.05, revMult: 4.5 },
         { _id: 'WhatsApp Marketing', spend: 0.05, revMult: 1.5 }
-    ].map(p => {
+    ];
+
+    // Filter by onboarding channels
+    const selectedPlatforms = allPlatforms.filter(p => mockProfile.channels.includes(p._id));
+
+    // If none selected for some reason, use Google/Facebook as fallback
+    const platformsToShow = selectedPlatforms.length > 0 ? selectedPlatforms : allPlatforms.slice(0, 2);
+
+    const platformStats = platformsToShow.map(p => {
         const s = Math.floor((range * 3000) * p.spend);
         const r = Math.floor(s * p.revMult * (0.9 + Math.random() * 0.2));
         return {
